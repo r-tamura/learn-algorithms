@@ -1,0 +1,27 @@
+{
+  "name": "learn-algorithms",
+  "version": "1.0.0",
+  "description": "Javascriptでいろいろなアルゴリズムを実装していくレポジトリ",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c --watch",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.10.0",
+    "eslint-config-google": "^0.7.0",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.1.2",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-watch": "^2.5.0"
+  }
+}

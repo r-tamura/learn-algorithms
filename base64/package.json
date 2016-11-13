@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "jsdoc": "jsdoc main.js -d docs",
+    "start": "node dest/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["base64"],
+  "author": "r-tamura",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^3.9.1",
-    "eslint-config-google": "^0.7.0"
+    "jsdoc": "^3.4.3"
   }
 }
