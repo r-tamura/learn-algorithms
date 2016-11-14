@@ -1,4 +1,4 @@
-import { encode, decode } from './src/base64';
+import { encode, decode } from '../../src/base64';
 
 const value = '✓ à la mode';
 let a;

@@ -34,11 +34,11 @@ function inverseBase64Chars(iterable) {
  * @param {boolean} opts.lineBreak - MIMEの仕様による改行を挿入するか
  * @return {string} Encoded string
  */
-export function encode(value, { method, eol, lineBreak } = {
-  method: 'buffer',
-  eol: '\r\n',
-  lineBreak: false,
-}) {
+export function encode(value, {
+  method = 'buffer',
+  eol = '\r\n',
+  lineBreak = false,
+} = {}) {
   switch(method) {
   case 'buffer':
     return new Buffer(value).toString('base64');
@@ -54,11 +54,11 @@ export function encode(value, { method, eol, lineBreak } = {
  * @param {object} opts - エンコード方式オプション
  * @return {string} デコードされた文字列
  */
-export function decode(value, { method, eol, lineBreak } = {
-  method: 'buffer',
-  eol: '\r\n',
-  lineBreak: false,
-}) {
+export function decode(value, {
+  method = 'buffer',
+  eol = '\r\n',
+  lineBreak = false,
+} = {}) {
   switch(method) {
   case 'buffer':
     return new Buffer(value, 'base64').toString();

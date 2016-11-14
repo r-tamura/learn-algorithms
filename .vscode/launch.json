@@ -8,10 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/base64/dest/bundle.js",
+      "program": "${workspaceRoot}/example/base64/dest/bundle.js",
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
-      "outDir": "${workspaceRoot}/base64/dest"
+      "outDir": "${workspaceRoot}/example/base64/dest"
     },
     {
       "type": "node",

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { encode, decode } from '../base64/src/base64';
+import { encode, decode } from '../src/base64';
 
 describe('Base64', () => {
   it('should be encoded string', () => {
