@@ -6,12 +6,11 @@
   "configurations": [
     {
       "type": "node",
+      "protocol": "inspector",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/example/base64/dest/bundle.js",
-      "sourceMaps": true,
-      "cwd": "${workspaceRoot}",
-      "outDir": "${workspaceRoot}/example/base64/dest"
+      "program": "${workspaceRoot}/example/base64.js",
+      "cwd": "${workspaceRoot}"
     },
     {
       "type": "node",

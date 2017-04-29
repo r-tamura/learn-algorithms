@@ -161,7 +161,7 @@ export function encode(value, {
     case 'manual':
       return encodeWithManual(value)
     default:
-      return value
+      return encodeWithManual(value)
   }
 }
 
@@ -183,7 +183,7 @@ export function decode(value, {
     case 'manual':
       return decodeWithManual(value)
     default:
-      return value
+      return decodeWithManual(value)
   }
 }
 
