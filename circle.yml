@@ -1,3 +1,6 @@
+machine:
+  node:
+    version: 7.9.0
 compile:
   override:
     - npm run build
