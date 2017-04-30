@@ -4,3 +4,10 @@ machine:
 compile:
   override:
     - npm run build
+dependencies:
+  override:
+    - yarn add tap-xunit --dev
+test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/reports
+    - ava --tap | tap-xunit > $CIRCLE_TEST_REPORTS/reports/ava.xml
