@@ -12,4 +12,3 @@ console.log(b = encode(value, { method: 'manual' }))
 console.log(decode(a))
 console.log(decode(b, { method: 'manual' }))
 
-
