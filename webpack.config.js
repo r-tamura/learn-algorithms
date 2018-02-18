@@ -1,6 +1,6 @@
 import path from 'path'
 
-const ENTRY_POINT_NAMES = ['base64', 'compress']
+const ENTRY_POINT_NAMES = ['base64', 'runLength']
 const entryPoints = ENTRY_POINT_NAMES.reduce((acc, v) => (Object.assign(acc, { [v]: `./src/${v}` })), {})
 
 export default {
