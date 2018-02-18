@@ -2,7 +2,8 @@
  * Base64のエンコード・デコードアプリケーション
  */
 
-const BASE64CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+const BASE64CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 // Base64のBlock Byte Size
 const BLOCK_SIZE = 3
 // MIMEの仕様による改行を挿入するサイズ
@@ -17,7 +18,9 @@ const LINE_SIZE = 76
 function unicodeToAscii(str) {
   // URLエンコードされた文字(%から始まる'数字','アルファベット'の長さ2の文字列)の正規表現
   const regex = /%([0-9A-Z]{2})/g
-  return encodeURIComponent(str).replace(regex, (match, p1) => String.fromCharCode(`0x${p1}`))
+  return encodeURIComponent(str).replace(regex, (match, p1) =>
+    String.fromCharCode(`0x${p1}`),
+  )
 }
 
 /**
@@ -27,9 +30,12 @@ function unicodeToAscii(str) {
  * @return {string} URIデコードにより変換された文字列
  */
 function asciiToUnicode(str) {
-  const tag = ([prefix], char) => (prefix + char.charCodeAt(0).toString(16)).slice(-2)
+  const tag = ([prefix], char) =>
+    (prefix + char.charCodeAt(0).toString(16)).slice(-2)
 
-  return decodeURIComponent([].map.call(str, char => `%${tag`00${char}`}`).join(''))
+  return decodeURIComponent(
+    [].map.call(str, char => `%${tag`00${char}`}`).join(""),
+  )
 }
 
 /**
@@ -66,35 +72,46 @@ function encodeWithManual(value) {
 
   const len = asciiValue.length
   const paddingCount = len % BLOCK_SIZE
-  let padding = ''
-
+  let padding = ""
 
   if (paddingCount > 0) {
     for (let i = 0; i < BLOCK_SIZE - paddingCount; i += 1) {
-      padding += '=' // パディング調整
-      asciiValue += '\0'  // 文字列の長さ調整
+      padding += "=" // パディング調整
+      asciiValue += "\0" // 文字列の長さ調整
     }
   }
 
   // 24bitずつBase64エンコード処理
-  let encoded = ''
+  let encoded = ""
   for (let i = 0; i < len; i += BLOCK_SIZE) {
     // MIMEの仕様による76Byte毎の改行
     // 1. i > 0 である
     // 2. 8bitのブロック単位から6bit単位に変換後のバイト数を計算し、
     //    LIEN_SIZEの倍数である場合は改行を挿入
     if (i > 0 && (i / 3 * 4) % LINE_SIZE === 0) {
-      encoded += '\r\n'
+      encoded += "\r\n"
     }
 
     // 3 Byte 切り取り
-    let chunk = (asciiValue.charCodeAt(i) << 16) + (asciiValue.charCodeAt(i + 1) << 8) + asciiValue.charCodeAt(i + 2)
+    let chunk =
+      (asciiValue.charCodeAt(i) << 16) +
+      (asciiValue.charCodeAt(i + 1) << 8) +
+      asciiValue.charCodeAt(i + 2)
 
     // 8 bit * 3 => 6 bit * 4 のブロックへ変換
-    chunk = [(chunk >>> 18) & 0b111111, (chunk >>> 12) & 0b111111, (chunk >>> 6) & 0b111111, chunk & 0b111111]
+    chunk = [
+      (chunk >>> 18) & 0b111111,
+      (chunk >>> 12) & 0b111111,
+      (chunk >>> 6) & 0b111111,
+      chunk & 0b111111,
+    ]
 
     // 6 bit データを変換表に対応した文字に変換
-    const encodedChunk = BASE64CHARS[chunk[0]] + BASE64CHARS[chunk[1]] + BASE64CHARS[chunk[2]] + BASE64CHARS[chunk[3]]
+    const encodedChunk =
+      BASE64CHARS[chunk[0]] +
+      BASE64CHARS[chunk[1]] +
+      BASE64CHARS[chunk[2]] +
+      BASE64CHARS[chunk[3]]
     encoded += encodedChunk
   }
 
@@ -120,18 +137,28 @@ function decodeWithManual(value) {
   const invBase64Chars = inverseBase64Chars(BASE64CHARS)
 
   // 対応表に存在しない文字を削除
-  let cleanValue = value.replace(new RegExp(`${BASE64CHARS}=`), '')
+  let cleanValue = value.replace(new RegExp(`${BASE64CHARS}=`), "")
 
   // padding探索 => パディング数分'A'
-  const padding = cleanValue.charAt(len - 1) === '=' ? (cleanValue.charAt(len - 2) === '=' ? 'AA' : 'A') : ''
+  const padding =
+    cleanValue.charAt(len - 1) === "="
+      ? cleanValue.charAt(len - 2) === "=" ? "AA" : "A"
+      : ""
   cleanValue = cleanValue.substr(0, len - padding.length) + padding
 
-  let decoded = ''
+  let decoded = ""
   for (let i = 0; i < len; i += 4) {
-    const chunk = (invBase64Chars[cleanValue.charAt(i)] << 18) + (invBase64Chars[cleanValue.charAt(i + 1)] << 12) +
-                (invBase64Chars[cleanValue.charAt(i + 2)] << 6) + invBase64Chars[cleanValue.charAt(i + 3)]
+    const chunk =
+      (invBase64Chars[cleanValue.charAt(i)] << 18) +
+      (invBase64Chars[cleanValue.charAt(i + 1)] << 12) +
+      (invBase64Chars[cleanValue.charAt(i + 2)] << 6) +
+      invBase64Chars[cleanValue.charAt(i + 3)]
 
-    const decodedChunk = String.fromCharCode((chunk >> 16) & 0xFF, (chunk >> 8) & 0xFF, chunk & 0xFF)
+    const decodedChunk = String.fromCharCode(
+      (chunk >> 16) & 0xff,
+      (chunk >> 8) & 0xff,
+      chunk & 0xff,
+    )
     decoded += decodedChunk
   }
 
@@ -150,15 +177,14 @@ function decodeWithManual(value) {
  * @param {boolean} opts.lineBreak - MIMEの仕様による改行を挿入するか
  * @return {string} Encoded string
  */
-export function encode(value, {
-  method = 'buffer',
-  eol = '\r\n',
-  lineBreak = false,
-} = {}) {
+export function encode(
+  value,
+  { method = "buffer", eol = "\r\n", lineBreak = false } = {},
+) {
   switch (method) {
-    case 'buffer':
-      return new Buffer(value).toString('base64')
-    case 'manual':
+    case "buffer":
+      return new Buffer(value).toString("base64")
+    case "manual":
       return encodeWithManual(value)
     default:
       return encodeWithManual(value)
@@ -172,15 +198,14 @@ export function encode(value, {
  * @param {object} opts - エンコード方式オプション
  * @return {string} デコードされた文字列
  */
-export function decode(value, {
-  method = 'buffer',
-  eol = '\r\n',
-  lineBreak = false,
-} = {}) {
+export function decode(
+  value,
+  { method = "buffer", eol = "\r\n", lineBreak = false } = {},
+) {
   switch (method) {
-    case 'buffer':
-      return new Buffer(value, 'base64').toString()
-    case 'manual':
+    case "buffer":
+      return new Buffer(value, "base64").toString()
+    case "manual":
       return decodeWithManual(value)
     default:
       return decodeWithManual(value)
@@ -188,6 +213,6 @@ export function decode(value, {
 }
 
 export default {
-  encode, decode,
+  encode,
+  decode,
 }
-

@@ -1,16 +1,22 @@
-import test from 'ava'
-import { encode } from '../src/runLength'
+import test from "ava"
+import { encode } from "../src/run_length"
 
 /** @test encode */
-test('compress#encode', t => {
-  t.is(encode(''), '')
-  t.is(encode('AAAAAAA'), 'A7')
-  t.is(encode('WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW'), 'W12BW12B3W24BW14')
+test("compress#encode", t => {
+  t.is(encode(""), "")
+  t.is(encode("AAAAAAA"), "A7")
+  t.is(
+    encode(
+      "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW",
+    ),
+    "W12BW12B3W24BW14",
+  )
 })
 
 /** @test encode  */
-test('compress#encode error', t => {
-  const error = t.throws(() => encode(12345), Error)
-  t.regex(error.message, /12345/)
+test("compress#encode error", t => {
+  const expected = new Error(
+    "It expected first argument is string, passed number",
+  )
+  const error = t.throws(() => encode(12345))
 })
-

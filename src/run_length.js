@@ -1,4 +1,3 @@
-
 /**
  * 連長圧縮(ランレングス圧縮)で文字列を圧縮します
  *
@@ -10,8 +9,10 @@
  * @return {string} エンコード後文字列
  */
 export const encode = input => {
-  if (typeof input !== 'string') {
-    throw new Error(`It expected first argument is string, passed ${typeof input}`)
+  if (typeof input !== "string") {
+    throw new Error(
+      `It expected first argument is string, passed ${typeof input}`,
+    )
   }
 
   // 空文字の場合は入力値をそのまま出力
@@ -20,8 +21,11 @@ export const encode = input => {
   }
 
   const output = input
-                    .match(/(.)\1*/g)
-                    .reduce((acc, v) => (v.length > 1 ? `${acc}${v[0]}${v.length}` : `${acc}${v[0]}`), '')
+    .match(/(.)\1*/g)
+    .reduce(
+      (acc, v) => (v.length > 1 ? `${acc}${v[0]}${v.length}` : `${acc}${v[0]}`),
+      "",
+    )
   return output
 }
 
@@ -36,13 +40,16 @@ export const encode = input => {
  * @return {string} 展開された文字列
  */
 export const decode = input => {
-  if (typeof input !== 'string') {
-    throw new Error(`It expected first argument is string, passed ${typeof input}`)
+  if (typeof input !== "string") {
+    throw new Error(
+      `It expected first argument is string, passed ${typeof input}`,
+    )
   }
   const output = input
   return output
 }
 
 export default {
-  encode, decode,
+  encode,
+  decode,
 }

@@ -1,14 +1,14 @@
 {
   "name": "learn-algorithms",
   "version": "1.0.0",
-  "description": "Javascriptでいろいろなアルゴリズムを実装していくレポジトリ",
+  "description": "JavaScriptでいろいろなアルゴリズムを実装していくレポジトリ",
   "main": "index.js",
   "scripts": {
-    "build": "node -r babel-register node_modules/webpack/bin/webpack",
+    "build": "webpack-cli --mode development",
     "doc": "esdoc",
     "watch": "yarn run build -- -w",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "prettier --debug-check --no-semi --trailing-comma all --list-different ./{src,test}/**/*.js",
+    "lint:fix": "prettier --write --no-semi --trailing-comma all ./{src,test}/**/*.js",
     "test": "ava ./test",
     "cover": "nyc --reporter=lcov --reporter=text --report-dir=reports yarn test"
   },
@@ -16,21 +16,19 @@
   "author": "rtamura",
   "license": "ISC",
   "devDependencies": {
-    "ava": "^0.19.1",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-register": "^6.18.0",
-    "esdoc": "^0.5.2",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.1.3",
-    "eslint-plugin-import": "^2.2.0",
-    "istanbul": "^0.4.5",
-    "nyc": "^10.2.0",
-    "webpack": "^2.4.1"
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "ava": "^0.25.0",
+    "babel-loader": "^8.0.0-beta.0",
+    "esdoc": "^1.0.4",
+    "prettier": "^1.10.2",
+    "webpack": "^4.0.0-beta.2",
+    "webpack-cli": "^2.0.6"
   },
   "ava": {
     "require": [
-      "babel-register"
-    ],
-    "babel": "inherit"
+      "@babel/register"
+    ]
   }
 }
