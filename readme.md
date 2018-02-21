@@ -21,3 +21,10 @@ CI: Circle CI
 ```
  npm test
 ```
+
+# 導入経緯
+
+### nyc
+ - AVAによるテストのカバレッジをHTMLとして出力するため
+ - Circle CIのArtifactとして出力 
+ https://github.com/avajs/ava/blob/master/docs/recipes/code-coverage.md

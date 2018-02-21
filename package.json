@@ -9,7 +9,7 @@
     "watch": "yarn run build -- -w",
     "lint": "prettier --debug-check --no-semi --trailing-comma all --list-different ./{src,test}/**/*.js",
     "lint:fix": "prettier --write --no-semi --trailing-comma all ./{src,test}/**/*.js",
-    "test": "ava ./test",
+    "test": "ava ./src/**/*.spec.js",
     "cover": "nyc --reporter=lcov --reporter=text --report-dir=reports yarn test"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "ava": "^0.25.0",
     "babel-loader": "^8.0.0-beta.0",
     "esdoc": "^1.0.4",
+    "nyc": "^11.4.1",
     "prettier": "^1.10.2",
     "webpack": "^4.0.0-beta.2",
     "webpack-cli": "^2.0.6"

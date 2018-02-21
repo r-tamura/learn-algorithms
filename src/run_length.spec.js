@@ -1,5 +1,5 @@
 import test from "ava"
-import { encode } from "../src/run_length"
+import { encode } from "./run_length"
 
 /** @test encode */
 test("compress#encode", t => {

@@ -7,4 +7,5 @@ docs
 dest
 dist
 .nyc_output
+reports
 coverage

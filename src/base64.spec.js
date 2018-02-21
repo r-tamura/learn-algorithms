@@ -1,5 +1,5 @@
 import test from "ava"
-import { encode, decode } from "../src/base64"
+import { encode, decode } from "./base64"
 
 /** @test encode  */
 test("base64#encode", t => {
