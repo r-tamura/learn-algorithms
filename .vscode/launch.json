@@ -6,11 +6,15 @@
   "configurations": [
     {
       "type": "node",
-      "protocol": "inspector",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceRoot}/example/base64.js",
-      "cwd": "${workspaceRoot}"
+      "name": "Run AVA test",
+      "program": "${workspaceRoot}/node_modules/ava/profile.js",
+      "args": [
+        "${file}"
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ]
     },
     {
       "type": "node",
