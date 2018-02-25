@@ -108,7 +108,61 @@ return x
 [number theory - Calculating RSA private exponent when given public exponent and the modulus factors using extended euclid - Cryptography Stack Exchange](https://crypto.stackexchange.com/questions/5889/calculating-rsa-private-exponent-when-given-public-exponent-and-the-modulus-fact)
 
 ### 公開指数eの選び方
-**TBI**
+ - 暗号ライブラリごとに決まった値の中から選ぶ(?)
+ - 公開指数が小さいことはセキュリティ上の問題にはならない
+ - むしろ指数のパディングが重要
 
-## 冪剰余計算
+[cryptography - Should RSA public exponent be only in {3, 5, 17, 257 or 65537} due to security considerations? - Information Security Stack Exchange](https://security.stackexchange.com/questions/2335/should-rsa-public-exponent-be-only-in-3-5-17-257-or-65537-due-to-security-c)
+
+### 公開指数/秘密指数の存在について
+**オイラーの定理**で証明される
+
+
+正整数 a,m に対して，a,m が互いに素であるとき，以下が成り立つ．
+```math
+a * φ(m) ≡ (mod\ m)
+```
+ただし，φ(m)は*オイラー関数*を表す．
+オイラー関数 φ(m) は「m より小さい正の整数のうち，m と互いに素な数の個数」を表す関数
+
+## 冪剰余計算 (Modular exponentiation)
+ 
+```math
+ b^e mod m
+```
+
+ - べき乗の余剰
+ - 公開鍵暗号の分野で必要とされる
+
+### Memory-efficient method
+ - eの値が大きくなっても計算途中の桁数が大きくならない計算方法
+ - $`c\ mod\ m\ =\ (a\ *\ b)\ mod\ m`$と$`c mod\ m\ =\ (a\ mod\ m) * (b\ mod\ m)\ mod\ m`$を利用
+
+### Right-to-left binary method
+ - 計算量・メモリ消費量をともに抑えた計算方法
+
+```math
+\begin{aligned}
+x^n & = x \, ( x^{2})^{\frac{n - 1}{2}} (if\ n\ is\ odd)\\
+x^n & = (x^{2})^{\frac{n}{2}} (if\ n\ is\ even )
+\end{aligned}
+```
+上式の性質を利用する。上式は$`n = 1, 0`$の場合
+```math
+\begin{aligned}
+x^n & = x * x^{2} (if\ n\ is\ 1)\\
+x^n & = x^{2} (if\ n\ is\ 0 )
+\end{aligned}
+```
+となる。
+指数eを2進数とした場合の各ビットに対し、この式を当てはめることで$`b^e`$を計算する
+
+
+## RSA復号(署名)アルゴリズム
+
+### 中国人余剰定理(Chinese Remainder Theorem, CRT)
+ - 高速にRSA復号(署名)を行うアルゴリズム
+ - Prime p, qを知っていることで成り立つアルゴリズムのため秘密鍵を利用した複合(署名)の場合のみ使える
+ 
+
 **TBI**
