@@ -3,12 +3,17 @@
  - Rivest, Shamir, Adleman
 
 # RSA暗号に必要なもの
- - 乱数の生成
- - 大きな素数p, qの算出
- - 最大公約数の計算
- - 最小公倍数の計算
- - 公開指数、秘密指数の計算
- - 冪剰余計算
+ - [ ] 乱数の生成
+ - [ ] 大きな素数p, qの生成
+  - [ ] フェルマーテスト
+  - [ ] ミラー・ロビンテスト
+ - [x] 最大公約数・最小公倍数の計算
+ - [x] 公開指数、秘密指数の計算
+ - [ ] 冪剰余計算
+
+# RSA暗号を理解するために知る必要があること
+- [ ] オイラーの定理      (公開指数/秘密指数が存在すること)
+- [ ] フェルマーの小定理  (暗号化された文が復号化できること)
 
 # RSAまでの道のり
 ## 最大公約数と最小公倍数を求める
@@ -26,11 +31,11 @@ lcm(a, b) = a * b / gcd(a, b)
 ### ユークリッド互除法
 
 ```
-(1) if a > b then swap(a, b)
-(2) while r ≠ 0
-(3)   r = a % b
-(4)   a = b; b = r
-(5) return b
+if a > b then swap(a, b)
+while r ≠ 0
+  r = a % b
+  a = b; b = r
+return b
 ```
 
 (a), (b)によりユークリッドの互除法で最大公約数が計算できることがわかる。
@@ -160,9 +165,36 @@ x^n & = x^{2} (if\ n\ is\ 0 )
 
 ## RSA復号(署名)アルゴリズム
 
-### 中国人余剰定理(Chinese Remainder Theorem, CRT)
+### 中国人剰余定理(Chinese Remainder Theorem, CRT)
  - 高速にRSA復号(署名)を行うアルゴリズム
- - Prime p, qを知っていることで成り立つアルゴリズムのため秘密鍵を利用した複合(署名)の場合のみ使える
- 
+ - Prime p, qを知っていることで成り立つアルゴリズムのため、秘密鍵を利用した複合(署名)の場合のみ使える
+ - 「3で割ると2余り、5で割ると3余り、7で割ると2余る数は何か」という問題を一般化したもの
+ - 証明： [中国剰余定理の証明と例題（二元の場合） | 高校数学の美しい物語](https://mathtrain.jp/chinese)
 
-**TBI**
+
+# その他
+
+ - `PKCS #1 v2.2`のASN.1フォーマット  
+ `exponent1`, `exponent2`, `coefficient`をCRTで複合(署名)する際に利用する  
+
+```
+RSAPublicKey ::= SEQUENCE {
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER   -- e
+}
+
+RSAPrivateKey ::= SEQUENCE {
+    version           Version,
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER,  -- e
+    privateExponent   INTEGER,  -- d
+    prime1            INTEGER,  -- p
+    prime2            INTEGER,  -- q
+    exponent1         INTEGER,  -- d mod (p-1)
+    exponent2         INTEGER,  -- d mod (q-1)
+    coefficient       INTEGER,  -- (inverse of q) mod p
+    otherPrimeInfos   OtherPrimeInfos OPTIONAL
+}
+```
+ - [RSA 秘密鍵/公開鍵ファイルのフォーマット - bearmini's blog](http://bearmini.hatenablog.com/entry/2014/02/05/143510)
+ - [RFC 8017 - PKCS #1: RSA Cryptography Specifications Version 2.2](https://tools.ietf.org/html/rfc8017#appendix-C)
