@@ -1,5 +1,5 @@
 import test from "ava"
-import { modInverse } from "./modInverse"
+import { modInverse } from "./mod_inverse"
 
 test("case EED returns positive number", t => {
   t.is(modInverse(2793, 828), 67)
