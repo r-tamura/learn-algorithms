@@ -15,6 +15,14 @@ const getState = (buffer, offset = 0) => {
   return state
 }
 
+const getRow = (state, i) => {
+  return [...state[i]]
+}
+
+const getColumn = (state, j) => {
+  return [...Array(4)].map((_, i) => state[i][j])
+}
+
 const get = (state, i, j) => {
   return state[i][j]
 }
@@ -25,4 +33,8 @@ const set = (state, i, j, value) => {
 
 export {
   getState,
+  getRow,
+  getColumn,
+  get,
+  set,
 }

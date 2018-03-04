@@ -35,7 +35,7 @@ test("millerRabin: 5111 is not prime", t => {
 })
 
 test("millerRabin: 19853 is prime", t => {
-  t.is(tester.millerRabinTest(19853, 1), true)
+  t.is(tester.millerRabinTest(19853, 3), true)
 })
 
 test("millerRabin: 2 is prime", t => {
