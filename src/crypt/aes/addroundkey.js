@@ -1,3 +1,4 @@
+import multiMap from "./util/multiMap"
 /**
  * AES - Add Round Keyフェーズ
  * 
@@ -6,7 +7,7 @@
  * @return {Array[4][4]} 鍵と混ぜ合わせた新しいState
  */
 const addRoundKey = (state, key) => {
-  return state.map((row, i) => row.map((e, j) => e ^ key[i][j]))
+  return multiMap(state, (e, i, j) => e ^ key[i][j])
 }
 
 export {

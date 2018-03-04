@@ -1,7 +1,7 @@
 import test from "ava"
-import { subbytes } from "./subbytes"
+import { subBytes } from "./subbytes"
 
-test("Thats my Kung fu", t => {
+test("subBytes", t => {
   const state    = [
     [0x00, 0x3C, 0x6E, 0x47],
     [0x1F, 0x4E, 0x22, 0x74],
@@ -14,6 +14,6 @@ test("Thats my Kung fu", t => {
     [0xab, 0x30, 0xaf, 0xc7],
     [0x20, 0xcb, 0x2b, 0xa2],
   ]
-  const actual   = subbytes(state)
+  const actual   = subBytes(state)
   t.deepEqual(actual, expected)
 })
