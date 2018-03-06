@@ -14,12 +14,13 @@
   - [x] AddRoundkey (鍵とデータを混ぜ合わせる)
   - [x] SubBytes (重要：非線形性により線形解読を防ぐ)
   - [x] ShiftRows
-  - [ ] MixColumns
-  - [ ] 鍵拡張(Rijndael key schedule)
+  - [x] MixColumns
+  - [x] 鍵拡張(Rijndael key schedule)
  - ブロック処理 (CFB, OFBは実装しない)
   - [ ] ECB (Electric Code Block)
   - [ ] CBC (Cipher Block Chaining)
   - [ ] CTR (Counter)
 
 # 参考
+ - [AES Example](https://kavaliro.com/wp-content/uploads/2014/03/AES.pdf)
  - [Advanced Encryption Standard](http://www.cs.siue.edu/~tgamage/S17/CS490/L/WK05.pdf)
