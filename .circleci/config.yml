@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:9.7.1-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: 'Install dependencies' 
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: "Unit test (with ava)"
+          command: "yarn test"
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+
