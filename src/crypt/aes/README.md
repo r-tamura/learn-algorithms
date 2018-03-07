@@ -13,9 +13,14 @@
  - ラウンド処理
   - [x] AddRoundkey (鍵とデータを混ぜ合わせる)
   - [x] SubBytes (重要：非線形性により線形解読を防ぐ)
+  - [x] SubBytes Inverse
   - [x] ShiftRows
+  - [x] ShiftRows Inverse
   - [x] MixColumns
+  - [x] MixColumns Inverse
   - [x] 鍵拡張(Rijndael key schedule)
+ - AES
+  - [ ] 128bit x 1 block のAES
  - ブロック処理 (CFB, OFBは実装しない)
   - [ ] ECB (Electric Code Block)
   - [ ] CBC (Cipher Block Chaining)

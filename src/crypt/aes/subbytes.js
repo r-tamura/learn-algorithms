@@ -43,11 +43,12 @@ const subBytes = state => {
 }
 
 const subBytesInverse = state => {
-  return state.map(row => row.map(e => SBOX[e]))
+  return multiMap(state, e => INV_SBOX[e])
 }
 
 export {
   SBOX,
   INV_SBOX,
   subBytes,
+  subBytesInverse,
 }
