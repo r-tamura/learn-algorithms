@@ -38,7 +38,6 @@ const mul2_F2 = a => {
 }
 
 const mulMatVec = (m, v) => {
-  debugger
   const res = [1, 1, 1, 1]
   for (let i = 0; i < 4; i++) {
     const t = []

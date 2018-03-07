@@ -15,6 +15,18 @@ const getState = (buffer, offset = 0) => {
   return state
 }
 
+const getBytes = state => {
+  const NUM_ROW = 4
+  const NUM_COL = 4
+  const buffer = new Buffer(16)
+  for (let i=0; i<NUM_ROW; i++) {
+    for (let j=0; j<NUM_COL; j++) {
+      buffer[i * NUM_COL + j] = state[j][i]
+    }
+  }
+  return buffer
+}
+
 const getRow = (state, i) => {
   return [...state[i]]
 }
@@ -33,6 +45,7 @@ const set = (state, i, j, value) => {
 
 export {
   getState,
+  getBytes,
   getRow,
   getColumn,
   get,

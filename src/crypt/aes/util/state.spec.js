@@ -1,5 +1,5 @@
 import test from "ava"
-import { getState, getRow, getColumn } from "./state"
+import { getState, getBytes, getRow, getColumn } from "./state"
 
 const TEST_STATE = [
   [0x54, 0x73, 0x20, 0x67],
@@ -21,6 +21,18 @@ test("getState from offset", t => {
   const offset   = 4
   const expected = TEST_STATE
   const actual   = getState(state, offset)
+  t.deepEqual(actual, expected)
+})
+
+test("getBytes", t => {
+  const state = [
+    [ 0x54, 0x73, 0x20, 0x67 ],
+    [ 0x68, 0x20, 0x4b, 0x20 ], 
+    [ 0x61, 0x6d, 0x75, 0x46 ],
+    [ 0x74, 0x79, 0x6e, 0x75 ],
+  ]
+  const expected = new Buffer([0x54, 0x68, 0x61, 0x74, 0x73, 0x20, 0x6d, 0x79, 0x20, 0x4b, 0x75, 0x6e, 0x67, 0x20, 0x46, 0x75 ])
+  const actual = getBytes(state)
   t.deepEqual(actual, expected)
 })
 

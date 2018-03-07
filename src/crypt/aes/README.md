@@ -19,8 +19,9 @@
   - [x] MixColumns
   - [x] MixColumns Inverse
   - [x] 鍵拡張(Rijndael key schedule)
- - AES
-  - [ ] 128bit x 1 block のAES
+ - (128bit) x (1 block) のAES
+  - [x] 暗号化
+  - [x] 復号化
  - ブロック処理 (CFB, OFBは実装しない)
   - [ ] ECB (Electric Code Block)
   - [ ] CBC (Cipher Block Chaining)
