@@ -18,7 +18,6 @@ const encrypt = (plain, key) => {
   
   const encrypted = roundKeys.reduce((state, v, i) => {
     const roundKey = getState(v)
-    debugger
     if (i===0) {
       return addRoundKey(state, roundKey)
     } else if (i === roundKeys.length - 1) {
@@ -44,7 +43,6 @@ const decrypt = (encrypted, key) => {
   
   const plain = roundKeys.reverse().reduce((state, v, i) => {
     const roundKey = getState(v)
-    debugger
     if (i===0) {
       return subBytesInverse(shiftRowsInverse(addRoundKey(state, roundKey)))
     } else if (i === roundKeys.length - 1) {

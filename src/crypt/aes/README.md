@@ -7,7 +7,7 @@
 # 処理の概要
  - ある一定の処理を128bit単位のデータへ複数回繰り返し暗号化するデータと暗号鍵を混ぜ合わせるイメージ
  - 繰り替えす処理をラウンドと呼び、一回の処理は`SubstitutionBytes`, `ShiftRows`, `MixColmuns`,`AddRoundkey`の4つで構成される
- - 鍵の大きさは128bit, 192bit, 256bitが使用可能
+ - 鍵の大きさは128bit, 192bit, 256bitが使用可能(今回は128bit版のみ実装)
 
 # AESにひつようなもの
  - ラウンド処理
@@ -23,7 +23,7 @@
   - [x] 暗号化
   - [x] 復号化
  - ブロック処理 (CFB, OFBは実装しない)
-  - [ ] ECB (Electric Code Block)
+  - [x] ECB (Electric Code Block)
   - [ ] CBC (Cipher Block Chaining)
   - [ ] CTR (Counter)
 
