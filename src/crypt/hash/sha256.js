@@ -1,3 +1,5 @@
+import hash from "./hash"
+
 const K = [
   0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
   0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
@@ -13,8 +15,6 @@ const K = [
 const H = [
   0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
 ]
-
-const toHex = (p, v) => v.toString(16).padStart(p, "0")
 
 const sigma0 = x => rotRight(7, x) ^ rotRight(18, x) ^ (x >>> 3)
 
@@ -87,34 +87,6 @@ const hashBlock = (prevHashState, block) => {
  * sha256ハッシュを計算します
  * @param {string} input
  */
-const sha256 = input => {
-  const data = Buffer.from(input, "utf8")
-  let h = [...H]
-  let i
-  for (i = 0; i < data.length - 64; i=i+64) {
-    h = hashBlock(h, data.slice(i, i + 64))
-  }
-  // 512bitになるようにパディング
-  const lRemain = data.length - i
-
-  // 余りデータを一時配列へコピー
-  const tmp = Buffer.concat([data.slice(i, i + lRemain), new Buffer(64 - lRemain)])
-  tmp[lRemain] = 0x80
-  if (lRemain > 64 - 8 - 1) {
-    tmp.fill(0x00, lRemain + 1, 64)
-    h = hashBlock(h, tmp)
-    tmp.fill(0x00, 0, 64 - 8)
-  } else {
-    tmp.fill(0x00, lRemain + 1, 64 - 8)
-  }
-
-  const lenU = Math.floor((data.length * 8) / Math.pow(2, 32)) // 上位1バイト
-  const lenL = data.length * 8 & 0xffffffff // 下位1バイト
-  tmp.writeUInt32BE(lenU, 56)
-  tmp.writeUInt32BE(lenL, 60)
-
-  h = hashBlock(h, tmp)
-  return h.reduce((acc, v) => acc + toHex(8, v), "")
-}
+const sha256 = hash(hashBlock, H)
 
 export default sha256
