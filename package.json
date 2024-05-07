@@ -24,7 +24,7 @@
     "esdoc": "^1.1.0",
     "nyc": "^15.1.0",
     "prettier": "^2.3.0",
-    "webpack": "^5.38.1",
+    "webpack": "^5.76.0",
     "webpack-cli": "^4.7.0"
   },
   "ava": {
