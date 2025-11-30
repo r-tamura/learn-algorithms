@@ -7,22 +7,22 @@
  */
 const trialDivition = (x, y) => {
   if (x < y) {
-    y = x + y
-    x = y - x
-    y = y - x
+    y = x + y;
+    x = y - x;
+    y = y - x;
   }
-  let g = 1
-  let n = 2
+  let g = 1;
+  let n = 2;
   while (n < y) {
-    n++
+    n++;
     while (x % n === 0 && y % n === 0) {
-      g = n * g
-      x = Math.trunc(x / n)
-      y = Math.trunc(y / n)
+      g = n * g;
+      x = Math.trunc(x / n);
+      y = Math.trunc(y / n);
     }
   }
-  return g
-}
+  return g;
+};
 
 /**
  * ユークリッド互除法
@@ -32,21 +32,21 @@ const trialDivition = (x, y) => {
  * @return {number} gcd(x, y)
  */
 const euclid = (x, y) => {
-  x = Math.abs(x)
-  y = Math.abs(y)
+  x = Math.abs(x);
+  y = Math.abs(y);
   if (x < y) {
-    y = x + y
-    x = y - x
-    y = y - x
+    y = x + y;
+    x = y - x;
+    y = y - x;
   }
 
-  let r
+  let r;
   while ((r = x % y) !== 0) {
-    x = y
-    y = r
+    x = y;
+    y = r;
   }
-  return y
-}
+  return y;
+};
 
 /**
  * 拡張ユークリッド互除法
@@ -56,25 +56,30 @@ const euclid = (x, y) => {
  * @return {number} ax + by = gdc(a,b) のうち { x, y, gcd: gcd(a, b) }
  */
 const extendedEuclid = (a, b) => {
-  let xPrev = 1, x = 0, xNext
-  let yPrev = 0, y = 1, yNext
-  let rPrev = a, r = b, rNext
-  let qNext
+  let xPrev = 1,
+    x = 0,
+    xNext;
+  let yPrev = 0,
+    y = 1,
+    yNext;
+  let rPrev = a,
+    r = b,
+    rNext;
+  let qNext;
   while (r !== 0) {
-    qNext = Math.trunc(rPrev / r)
-    rNext = rPrev % r
-    xNext = xPrev - qNext * x
-    yNext = yPrev - qNext * y
+    qNext = Math.trunc(rPrev / r);
+    rNext = rPrev % r;
+    xNext = xPrev - qNext * x;
+    yNext = yPrev - qNext * y;
 
-    xPrev = x; x = xNext
-    yPrev = y; y = yNext
-    rPrev = r; r = rNext
+    xPrev = x;
+    x = xNext;
+    yPrev = y;
+    y = yNext;
+    rPrev = r;
+    r = rNext;
   }
-  return { x: xPrev, y: yPrev, gcd: rPrev }
-}
+  return { x: xPrev, y: yPrev, gcd: rPrev };
+};
 
-export { 
-  euclid,
-  trialDivition,
-  extendedEuclid,
-}
+export { euclid, trialDivition, extendedEuclid };

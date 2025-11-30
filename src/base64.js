@@ -34,7 +34,7 @@ function asciiToUnicode(str) {
     (prefix + char.charCodeAt(0).toString(16)).slice(-2);
 
   return decodeURIComponent(
-    [].map.call(str, (char) => `%${tag`00${char}`}`).join("")
+    [].map.call(str, char => `%${tag`00${char}`}`).join("")
   );
 }
 
@@ -88,7 +88,7 @@ function encodeInJS(value) {
     // 1. i > 0 である
     // 2. 8bitのブロック単位から6bit単位に変換後のバイト数を計算し、
     //    LIEN_SIZEの倍数である場合は改行を挿入
-    if (i > 0 && ((i / 3) * 4) % LINE_SIZE === 0) {
+    if (i > 0 && (i / 3 * 4) % LINE_SIZE === 0) {
       encoded += "\r\n";
     }
 
@@ -103,7 +103,7 @@ function encodeInJS(value) {
       (chunk8Bits >>> 18) & 0b111111,
       (chunk8Bits >>> 12) & 0b111111,
       (chunk8Bits >>> 6) & 0b111111,
-      chunk8Bits & 0b111111,
+      chunk8Bits & 0b111111
     ];
 
     // 6 bit データを変換表に対応した文字に変換
@@ -142,9 +142,7 @@ function decodeInJS(value) {
   // padding探索 => パディング数分'A'
   const padding =
     cleanValue.charAt(len - 1) === "="
-      ? cleanValue.charAt(len - 2) === "="
-        ? "AA"
-        : "A"
+      ? cleanValue.charAt(len - 2) === "=" ? "AA" : "A"
       : "";
   cleanValue = cleanValue.substr(0, len - padding.length) + padding;
 
@@ -222,5 +220,5 @@ export class NotSupportedMethod extends Error {
 
 export default {
   encode,
-  decode,
+  decode
 };

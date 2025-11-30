@@ -11,23 +11,23 @@
 export const encode = input => {
   if (typeof input !== "string") {
     throw new Error(
-      `It expected first argument is string, passed ${typeof input}`,
-    )
+      `It expected first argument is string, passed ${typeof input}`
+    );
   }
 
   // 空文字の場合は入力値をそのまま出力
   if (input.length === 0) {
-    return input
+    return input;
   }
 
   const output = input
     .match(/(.)\1*/g)
     .reduce(
       (acc, v) => (v.length > 1 ? `${acc}${v[0]}${v.length}` : `${acc}${v[0]}`),
-      "",
-    )
-  return output
-}
+      ""
+    );
+  return output;
+};
 
 /**
  * 連長圧縮されたデータを展開します
@@ -42,14 +42,14 @@ export const encode = input => {
 export const decode = input => {
   if (typeof input !== "string") {
     throw new Error(
-      `It expected first argument is string, passed ${typeof input}`,
-    )
+      `It expected first argument is string, passed ${typeof input}`
+    );
   }
-  const output = input
-  return output
-}
+  const output = input;
+  return output;
+};
 
 export default {
   encode,
-  decode,
-}
+  decode
+};
