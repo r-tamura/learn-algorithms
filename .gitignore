@@ -9,3 +9,5 @@ dist
 .nyc_output
 reports
 coverage
+
+.yarn
