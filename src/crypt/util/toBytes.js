@@ -12,7 +12,8 @@ const toBytes = (data, encoding) => {
     return Buffer.from(data, encoding);
   }
 
-  const base64Regex = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/;
+  const base64Regex =
+    /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/;
   if (base64Regex.test(data)) {
     return Buffer.from(data, "base64");
   }

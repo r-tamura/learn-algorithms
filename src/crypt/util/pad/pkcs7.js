@@ -4,7 +4,7 @@
  * @param {} align
  */
 const pad = (data, blockSize) => {
-  const padLength = blockSize - data.length % blockSize;
+  const padLength = blockSize - (data.length % blockSize);
   return Buffer.concat([data, new Buffer(padLength).fill(padLength)]);
 };
 
@@ -12,7 +12,7 @@ const pad = (data, blockSize) => {
  * pkcs7形式のパディングを削除します
  * @param {*} data
  */
-const unpad = data => {
+const unpad = (data) => {
   const dataLength = data.length;
   // Get number of padding bytes from last byte
   const padLength = data[dataLength - 1];
@@ -21,5 +21,5 @@ const unpad = data => {
 
 export default {
   pad,
-  unpad
+  unpad,
 };

@@ -49,7 +49,7 @@ const decrypt = (encrypted, key) => {
       return addRoundKey(state, roundKey);
     } else {
       return subBytesInverse(
-        shiftRowsInverse(mixColumnsInverse(addRoundKey(state, roundKey)))
+        shiftRowsInverse(mixColumnsInverse(addRoundKey(state, roundKey))),
       );
     }
   }, firstState);

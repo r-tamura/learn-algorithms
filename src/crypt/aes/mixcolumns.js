@@ -1,44 +1,16 @@
 import { getColumn } from "./util/state";
 
 const CONST_MATRIX = [
-  0x02,
-  0x03,
-  0x01,
-  0x01,
-  0x01,
-  0x02,
-  0x03,
-  0x01,
-  0x01,
-  0x01,
-  0x02,
-  0x03,
-  0x03,
-  0x01,
-  0x01,
-  0x02
+  0x02, 0x03, 0x01, 0x01, 0x01, 0x02, 0x03, 0x01, 0x01, 0x01, 0x02, 0x03, 0x03,
+  0x01, 0x01, 0x02,
 ];
 
 const INV_CONST_MATRIX = [
-  0x0e,
-  0x0b,
-  0x0d,
-  0x09,
-  0x09,
-  0x0e,
-  0x0b,
-  0x0d,
-  0x0d,
-  0x09,
-  0x0e,
-  0x0b,
-  0x0b,
-  0x0d,
-  0x09,
-  0x0e
+  0x0e, 0x0b, 0x0d, 0x09, 0x09, 0x0e, 0x0b, 0x0d, 0x0d, 0x09, 0x0e, 0x0b, 0x0b,
+  0x0d, 0x09, 0x0e,
 ];
 
-const exclusiveSum = xs => {
+const exclusiveSum = (xs) => {
   return xs.reduce((acc, v) => acc ^ v);
 };
 
@@ -57,7 +29,7 @@ const mul_F2 = (a, b) => {
 /*
  * aを2倍する
  */
-const mul2_F2 = a => {
+const mul2_F2 = (a) => {
   return a & 0x80 ? (a << 1) ^ 0x011b : a << 1;
 };
 
@@ -78,7 +50,7 @@ const mulMatVec = (m, v) => {
  *
  * @param {Array} state
  */
-const mixColumns = state => {
+const mixColumns = (state) => {
   let nextState = [[], [], [], []];
   for (let i = 0; i < 4; i++) {
     // 列単位で新しい配列を作成
@@ -93,7 +65,7 @@ const mixColumns = state => {
   return nextState;
 };
 
-const mixColumnsInverse = state => {
+const mixColumnsInverse = (state) => {
   let nextState = [[], [], [], []];
   for (let i = 0; i < 4; i++) {
     // 列単位で新しい配列を作成

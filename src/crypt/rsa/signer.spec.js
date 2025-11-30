@@ -1,7 +1,7 @@
 import test from "ava";
 import { signWithCrt } from "./signer";
 
-test("Sign with CRT", t => {
+test("Sign with CRT", (t) => {
   const c = 52; // 暗号文
   const p = 7;
   const q = 11;

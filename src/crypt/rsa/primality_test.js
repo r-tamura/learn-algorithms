@@ -87,7 +87,7 @@ const millerRabinTest = (r, t) => {
   return true;
 };
 
-const isPrime = r => {
+const isPrime = (r) => {
   if (r === 2) {
     return true;
   }

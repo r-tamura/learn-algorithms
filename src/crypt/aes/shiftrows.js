@@ -14,11 +14,11 @@ const shiftLeft = (xs, n) => {
  * @param {Array} state
  * @return {Array} Shift Rows
  */
-const shiftRows = state => {
+const shiftRows = (state) => {
   return state.map((row, i) => shiftLeft(row, i));
 };
 
-const shiftRowsInverse = state => {
+const shiftRowsInverse = (state) => {
   return state.map((row, i) => shiftLeft(row, 4 - i));
 };
 

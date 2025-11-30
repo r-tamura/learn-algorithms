@@ -15,7 +15,7 @@ const modInverse = (e, l) => {
   // > It always takes the sign of the dividend, not the divisor
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators
   // Mod計算方法 https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers/4467559
-  const d = x >= 0 ? x : x % l + l;
+  const d = x >= 0 ? x : (x % l) + l;
   return d;
 };
 

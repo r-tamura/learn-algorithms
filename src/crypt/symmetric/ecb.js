@@ -14,14 +14,14 @@ const BLOCK_SIZE = 16; // 128bit
  *
  * @param {*} encryptBlock
  */
-const encrypt = encryptBlock => (plain, inputKey) => {
+const encrypt = (encryptBlock) => (plain, inputKey) => {
   const data = pkcs7.pad(toBytes(plain, "utf8"), BLOCK_SIZE);
   const key = toBytes(inputKey, "utf8");
   const encryptedByte = ecb(encryptBlock, data, key);
   return encryptedByte.toString("base64");
 };
 
-const decrypt = decryptBlock => (endrypted, inputKey) => {
+const decrypt = (decryptBlock) => (endrypted, inputKey) => {
   const data = toBytes(endrypted);
   const key = toBytes(inputKey, "utf8");
   const bytes = ecb(decryptBlock, data, key);

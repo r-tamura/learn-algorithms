@@ -29,11 +29,11 @@ const hmac = (hashFn, blockSize) => (key, input) => {
   const key_ipad = exclusiveOr(keyBuf, ipad);
 
   const ihashinput = Buffer.concat([Buffer.from(key_ipad), data]).toString(
-    "utf8"
+    "utf8",
   );
   const ohashinput = Buffer.concat([
     Buffer.from(key_opad),
-    Buffer.from(hashFn(ihashinput), "hex")
+    Buffer.from(hashFn(ihashinput), "hex"),
   ]);
   return hashFn(ohashinput);
 };

@@ -1,5 +1,5 @@
 const exclusiveOr = (word1, word2) => {
-  const zipWith = fn => (xs, ys) => {
+  const zipWith = (fn) => (xs, ys) => {
     const res = [];
     for (let i = 0; i < xs.length; i++) {
       res[i] = fn(xs[i], ys[i], i);

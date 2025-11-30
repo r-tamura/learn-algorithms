@@ -5,7 +5,7 @@ const getState = (buffer, offset = 0) => {
   // Array.prototype.fillはオブジェクトの参照を各要素へ渡してしまう
   // const state = (new Array(4)).fill([])
   const source = buffer.slice(offset);
-  const state = new Array(4).fill(null).map(_ => []);
+  const state = new Array(4).fill(null).map((_) => []);
 
   for (let i = 0; i < NUM_ROW; i++) {
     for (let j = 0; j < NUM_COL; j++) {
@@ -15,7 +15,7 @@ const getState = (buffer, offset = 0) => {
   return state;
 };
 
-const getBytes = state => {
+const getBytes = (state) => {
   const NUM_ROW = 4;
   const NUM_COL = 4;
   const buffer = new Buffer(16);
