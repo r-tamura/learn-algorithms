@@ -23,7 +23,7 @@
     "babel-loader": "^10.0.0",
     "esdoc": "^1.1.0",
     "nyc": "^17.1.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^4.7.0"
   },
