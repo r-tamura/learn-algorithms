@@ -4,11 +4,13 @@
   "description": "JavaScriptでいろいろなアルゴリズムを実装していくレポジトリ",
   "main": "index.js",
   "scripts": {
-    "build": "webpack-cli --mode development",
+    "build": "tsup",
     "doc": "esdoc",
-    "watch": "yarn run build -- -w",
+    "watch": "tsup --watch",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint --fix src",
     "test": "vitest run",
     "test:watch": "vitest",
     "cover": "vitest run --coverage",
@@ -21,12 +23,13 @@
     "@types/node": "^25.9.2",
     "@typescript/native-preview": "^7.0.0-dev.20260606.1",
     "@vitest/coverage-v8": "^4.1.8",
-    "esdoc": "^1.1.0",
+    "oxlint": "^1.68.0",
     "prettier": "^3.8.3",
+    "tsup": "^8.5.1",
+    "typedoc": "^0.28.19",
     "typescript": "^6.0.3",
     "vite": "^8.0.16",
-    "vitest": "^4.1.8",
-    "webpack": "^5.107.2",
-    "webpack-cli": "^4.7.0"
-  }
+    "vitest": "^4.1.8"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
