@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsup",
-    "doc": "esdoc",
+    "doc": "typedoc",
     "watch": "tsup --watch",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\"",
