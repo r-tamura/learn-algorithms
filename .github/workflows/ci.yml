@@ -26,6 +26,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable-cache
 
+      - name: Type check
+        run: yarn typecheck
+
+      - name: Lint
+        run: yarn lint
+
       - name: Run tests
         run: yarn test
 
