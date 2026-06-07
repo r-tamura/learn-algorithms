@@ -1,9 +1,0 @@
-{
-  "source": "./src",
-  "destination": "./docs",
-  "test": {
-    "type": "ava",
-    "source": "./test"
-  },
-  "undocumentIdentifier": false
-}
