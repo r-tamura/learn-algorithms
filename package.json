@@ -20,8 +20,11 @@
   "author": "rtamura",
   "license": "ISC",
   "devDependencies": {
+    "@rolldown/binding-darwin-arm64": "^1.1.0",
+    "@rollup/rollup-darwin-arm64": "^4.61.1",
     "@types/node": "^25.9.2",
     "@typescript/native-preview": "^7.0.0-dev.20260606.1",
+    "@typescript/native-preview-darwin-arm64": "^7.0.0-dev.20260606.1",
     "@vitest/coverage-v8": "^4.1.8",
     "oxlint": "^1.68.0",
     "prettier": "^3.8.3",
@@ -30,5 +33,20 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.8"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "aube@1.18.0",
+  "aube": {
+    "supportedArchitectures": {
+      "os": [
+        "darwin",
+        "linux"
+      ],
+      "cpu": [
+        "arm64",
+        "x64"
+      ]
+    },
+    "allowBuilds": {
+      "esbuild": true
+    }
+  }
 }

@@ -21,19 +21,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+
+      - name: Install aube
+        run: npm install -g --ignore-scripts=false @endevco/aube
 
       - name: Install dependencies
-        run: yarn install --immutable-cache
+        run: aube ci
 
       - name: Type check
-        run: yarn typecheck
+        run: aube typecheck
 
       - name: Lint
-        run: yarn lint
+        run: aube lint
 
       - name: Run tests
-        run: yarn test
+        run: aube test
 
       - name: Check code formatting
-        run: yarn format:check
+        run: aube format:check
