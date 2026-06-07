@@ -7,29 +7,26 @@
     "build": "webpack-cli --mode development",
     "doc": "esdoc",
     "watch": "yarn run build -- -w",
-    "format:check": "prettier --check ./{src,test}/**/*.js",
-    "format": "prettier --write ./{src,test}/**/*.js",
-    "test": "ava src/**/*.spec.js",
-    "cover": "nyc --reporter=lcov --reporter=text --report-dir=reports yarn test"
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cover": "vitest run --coverage",
+    "typecheck": "tsgo"
   },
   "keywords": [],
   "author": "rtamura",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.7",
-    "@babel/register": "^7.29.3",
-    "ava": "^3.15.0",
-    "babel-loader": "^10.1.1",
+    "@types/node": "^25.9.2",
+    "@typescript/native-preview": "^7.0.0-dev.20260606.1",
+    "@vitest/coverage-v8": "^4.1.8",
     "esdoc": "^1.1.0",
-    "nyc": "^17.1.0",
     "prettier": "^3.8.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8",
     "webpack": "^5.107.2",
     "webpack-cli": "^4.7.0"
-  },
-  "ava": {
-    "require": [
-      "@babel/register"
-    ]
   }
 }
