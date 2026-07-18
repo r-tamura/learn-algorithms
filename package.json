@@ -20,7 +20,7 @@
   "author": "rtamura",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^25.9.2",
+    "@types/node": "^26.1.1",
     "@vitest/coverage-v8": "^4.1.8",
     "oxlint": "^1.68.0",
     "prettier": "^3.8.3",
